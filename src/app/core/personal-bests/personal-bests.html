@@ -1,0 +1,23 @@
+<div *ngIf="pbs$ | async as pbs">
+  <div *ngIf="pbs.length > 0; else noData" class="pb-list">
+    <div *ngFor="let fish of pbs" class="pb-item">
+      <img
+        class="fish-img"
+        src="bass.png"
+        alt="fish"
+      />
+      <div class="pb-info">
+        <div class="species">{{ fish.fishName }}</div>
+        <div class="details">
+          <span>{{ fish.weight }} lbs</span>
+          <span class="divider">|</span>
+          <span>{{ fish.length }} inches</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noData>
+  No recent personal bests
+</ng-template>

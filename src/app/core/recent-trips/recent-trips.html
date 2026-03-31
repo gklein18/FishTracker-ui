@@ -1,0 +1,21 @@
+<div *ngIf="trips$ | async as trips">
+  <div *ngIf="trips.length > 0; else noData" class="trip-list">
+    <div *ngFor="let trip of trips" class="trip-item">
+      <div class="trip-left">
+        <span class="arrow">▶</span>
+        <span class="location">{{ trip.location }}</span>
+      </div>
+      <div class="trip-right">
+        <span>{{ trip.tripDate | date:'MMM d, y' }}</span>
+        <span class="divider">|</span>
+        <span>{{ trip.durationHours }} Hours</span>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="view-all" (click)="viewAllTrips()">View All Trips</button>
+
+
+<ng-template #noData>
+  No recent trips
+</ng-template>

@@ -1,0 +1,91 @@
+<div class="background">
+  <app-navigation-bar></app-navigation-bar>
+  <div class="container">
+    <div class="page-header">
+      <h1>Your Trips</h1>
+      <p>Track your fishing history</p>
+    </div>
+    <div class="actions-bar">
+      <button (click)="openTripModal()" class="primary-btn">
+        + Add Trip
+      </button>
+      <app-trip-form
+        *ngIf="isTripModalOpen"
+        (close)="closeTripModal()">
+      </app-trip-form>
+    </div>
+    <div class="layout" [class.detail-open]="selectedTrip">
+      <div class="trips-left">
+        <div *ngIf="trips$ | async as trips; else loading">
+          <div class="trip-list">
+            <div *ngIf="trips.length === 0" class="empty-state">
+              <p>No trips yet 🎣</p>
+              <button>Create your first trip</button>
+            </div>
+
+            <div
+              class="trip-card"
+              *ngFor="let trip of trips"
+              (click)="selectTrip(trip)"
+            >
+              <div class="trip-header">
+                <span class="location">📍 {{ trip.location }}</span>
+                <span class="date">{{ trip.tripDate }}</span>
+              </div>
+
+              <div class="trip-body">
+                🎣 {{ trip.catchCount || 0 }} catches
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #loading>
+          <div class="loading-state">
+            Loading trips...
+          </div>
+        </ng-template>
+      </div>
+      <div class="catch-panel" *ngIf="selectedTrip">
+        <div class="panel-header">
+          <div>
+            <h2>{{ selectedTrip.location }}</h2>
+            <p>{{ selectedTrip.tripDate }}</p>
+          </div>
+
+          <button [routerLink]="['/catch/new']" class="add-btn">
+            + Add Catch
+          </button>
+        </div>
+        <div class="divider"></div>
+        <div *ngIf="catches$ | async as catches; else loading">
+          <div *ngIf="catchesLoading" class="loading">
+            Loading catches...
+          </div>
+          <div *ngIf="!catchesLoading && catches.length === 0" class="empty">
+            <p>No catches for this trip yet 🎣</p>
+          </div>
+          <div class="catch-list" *ngIf="!catchesLoading && catches.length > 0">
+
+            <div class="catch-card" *ngFor="let catch of catches">
+              <img
+                src="bass.png"
+                class="fish-img"
+              />
+              <div class="catch-info">
+                <div class="catch-title">
+                  🎣 {{ catch.fishName }}
+                </div>
+                <div class="catch-stats">
+                  {{ catch.length }}"
+                  <span *ngIf="catch.weight"> • {{ catch.weight }} lbs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button (click)="selectedTrip = null">← Back</button>
+      </div>
+    </div>
+  </div>
+</div>

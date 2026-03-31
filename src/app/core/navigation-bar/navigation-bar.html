@@ -1,0 +1,15 @@
+<div class="menu-bar">
+  <nav>
+    <div class="nav-bar">
+      <span class="logo navLogo"><img src="fish_icon.png" alt="Test" class="small-icon"><a href="/dashboard">FishTracker</a></span>
+      <div *ngIf="path == '/dashboard'" class="menu">
+        <ul class="nav-links">
+          <li><a href="/trips">My Trips</a></li>
+          <li><a href="#">Stats</a></li>
+          <li><a href="#">Fish</a></li>
+        </ul>
+      </div>
+      <button type="submit" class="primary-btn">Log Out</button>
+    </div>
+  </nav>
+</div>

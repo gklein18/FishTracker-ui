@@ -1,0 +1,49 @@
+<div class="dashboard">
+  <app-navigation-bar></app-navigation-bar>
+  <div class="container">
+    <div class="card-trip one trip-card">
+      <div class="trip-image">
+        <h2>Log a New Trip</h2>
+      </div>
+      <div class="trip-action">
+        <button class="add-trip" (click)="openTripModal()">Add Fishing Trip</button>
+        <app-trip-form
+          *ngIf="isTripModalOpen"
+          (close)="closeTripModal()">
+        </app-trip-form>
+      </div>
+    </div>
+    <div class="card two">
+      <h2>Recent Trips</h2>
+      <app-recent-trips></app-recent-trips>
+    </div>
+    <div class="card three">
+      <h2>Recent Catches</h2>
+      <app-recent-catches></app-recent-catches>
+    </div>
+
+  </div>
+  <div class="container">
+    <div class="card shift">
+      <h2>Personal Stats</h2>
+      <div class="stats">
+        <div class="stat-card">
+          <h2>{{ totalTrips }}</h2>
+          <p>Total Trips</p>
+        </div>
+        <div class="stat-card">
+          <h2>{{ totalCatches }}</h2>
+          <p>Total Catches</p>
+        </div>
+        <div class="stat-card">
+          <h2>{{ personalBests }}</h2>
+          <p>Personal Bests</p>
+        </div>
+      </div>
+    </div>
+    <div class="card pb">
+      <h2>Recent Personal Bests</h2>
+      <app-personal-bests></app-personal-bests>
+    </div>
+  </div>
+</div>

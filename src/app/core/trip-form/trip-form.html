@@ -1,0 +1,23 @@
+<div class="modal-backdrop" (click)="onClose()">
+
+  <div class="modal" (click)="$event.stopPropagation()">
+
+    <h2>📍 Create Trip</h2>
+    <p class="subtitle">Track where and when you fished</p>
+
+    <form [formGroup]="tripForm" (ngSubmit)="onSubmit()">
+
+      <input type="text" placeholder="Location" formControlName="location" />
+
+      <input type="date" formControlName="tripDate" />
+
+      <div class="actions">
+        <button type="button" class="cancel" (click)="onClose()">Cancel</button>
+        <button type="submit" class="save">Save Trip</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

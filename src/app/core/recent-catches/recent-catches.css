@@ -1,0 +1,70 @@
+.fish-img {
+  width: 250px;
+  height: 90px;
+  object-fit: fill;
+}
+
+.catch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.catch-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 12px 14px;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0,0,0,0.08);
+
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.catch-item:hover {
+  transform: translateX(4px);
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.catch-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10%;
+}
+
+.species {
+  font-weight: 625;
+  font-size: 25px;
+}
+
+.details {
+  font-size: 20px;
+  color: #4b5563;
+
+  display: flex;
+  gap: 6px;
+}
+
+.divider {
+  opacity: 0.5;
+}
+
+.log-btn {
+  margin-top: 16px;
+  width: 100%;
+
+  padding: 10px;
+  border-radius: 10px;
+
+  border: none;
+  background: rgba(255,255,255,0.6);
+
+  font-weight: 500;
+  cursor: pointer;
+}

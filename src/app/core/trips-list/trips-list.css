@@ -1,0 +1,222 @@
+.background {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: url("background.png") center/cover no-repeat;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.trip-list {
+  width: 100%;
+  max-width: 700px;
+  flex: 1;
+  transition: all 0.3s ease;
+  margin-left: 50px;
+}
+
+.trip-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  width: 80%;
+  flex-shrink: 0;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trip-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.trip-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.location {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.date {
+  color: #777;
+  font-size: 14px;
+}
+
+.trip-body {
+  font-size: 14px;
+  color: #444;
+}
+
+.actions-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.primary-btn {
+  background: #2f6fed;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 40px;
+  color: #777;
+}
+
+.layout {
+  display: flex;
+  gap: 20px;
+  transition: all 0.3s ease;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.catch-panel {
+  flex: 1;
+  max-width: 500px;
+
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+
+  border-radius: 16px;
+  padding: 20px;
+
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  animation: slideIn 0.3s ease;
+}
+
+.layout.detail-open .trip-list {
+  flex: 0.6; /* shrink left side */
+}
+
+.layout.detail-open .catch-panel {
+  flex: 1; /* show right side */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.panel-header p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.add-btn {
+  background: #2f6fed;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.divider {
+  height: 1px;
+  background: #ddd;
+  margin: 16px 0;
+}
+
+.catch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.catch-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  padding: 10px;
+  border-radius: 10px;
+
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  animation: fadeIn 0.2s ease;
+}
+
+.fish-img {
+  width: 60px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.catch-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.catch-title {
+  font-weight: 600;
+}
+
+.catch-stats {
+  font-size: 14px;
+  color: #555;
+}
+
+.catch-location {
+  font-size: 13px;
+  color: #777;
+}
+
+.empty, .loading {
+  text-align: center;
+  color: #777;
+  margin-top: 20px;
+}
+
+.trip-card.selected {
+  border: 2px solid #2f6fed;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.trips-left {
+  flex: 1;
+  max-width: 700px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}

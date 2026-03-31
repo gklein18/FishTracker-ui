@@ -1,0 +1,25 @@
+<div *ngIf="catches$ | async as catches">
+  <div *ngIf="catches.length > 0; else noData" class="catch-list">
+    <div *ngFor="let fishy of catches" class="catch-item">
+      <img
+        class="fish-img"
+        src="bass.png"
+        alt="fish"
+      />
+      <div class="catch-info">
+        <div class="species">{{ fishy.fishName }}</div>
+        <div class="details">
+          <span>{{ fishy.weight }} lbs</span>
+          <span class="divider">|</span>
+          <span>{{ fishy.length }} inches</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="log-btn" [routerLink]="['/catch/new']">Log a Catch</button>
+
+<ng-template #noData>
+  No recent catches
+</ng-template>

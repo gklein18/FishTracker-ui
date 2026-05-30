@@ -1,9 +1,9 @@
 <div *ngIf="catches$ | async as catches">
   <div *ngIf="catches.length > 0; else noData" class="catch-list">
-    <div *ngFor="let fishy of catches" class="catch-item">
+    <div *ngFor="let fishy of catches" class="catch-item" (click)="viewTrip(fishy.tripId)">
       <img
         class="fish-img"
-        src="bass.png"
+        [src]="getFishImage(fishy.fishName)"
         alt="fish"
       />
       <div class="catch-info">
@@ -14,11 +14,15 @@
           <span>{{ fishy.length }} inches</span>
         </div>
       </div>
+      <button class="delete-btn"
+              (click)="deleteCatch(fishy.id); $event.stopPropagation()">
+        <i class="fa-solid fa-trash"></i>
+      </button>
     </div>
   </div>
 </div>
 
-<button class="log-btn" [routerLink]="['/catch/new']">Log a Catch</button>
+<button class="log-btn" (click)="addCatch.emit()">Log a Catch</button>
 
 <ng-template #noData>
   No recent catches

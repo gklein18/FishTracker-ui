@@ -1,18 +1,15 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
+  standalone: true,
 })
 export class Login {
-
-  constructor(
-    private router: Router
-  ) {
-  }
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 

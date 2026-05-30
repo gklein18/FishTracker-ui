@@ -1,61 +1,77 @@
-<div class ="login-back">
-  <app-navigation-bar></app-navigation-bar>
-  <div class="page-header">
-    <h1>Log a Catch</h1>
-    <p>Record your latest fishing success.</p>
-  </div>
-  <div class ="login-card">
-    <div class="fish-preview">
-      <img src="bass.png" />
-      <div class="fish-name">Largmouth Bass</div>
+<div class="modal-backdrop" (click)="onClose()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="page-header">
+      <h1>Log a Catch</h1>
+      <p>Record your latest fishing success.</p>
     </div>
-    <hr class="divider-top" />
-    <form [formGroup]="catchForm" (ngSubmit)="onSubmit()" class="form-group">
-      <label>Location</label>
-      <input
-        type="text"
-        formControlName="location"
-      />
-      <div class="form-row">
-        <label>Length <small>(inches)</small></label>
-        <input
-          type="number"
-          formControlName="length"
-        />
+    <div class ="form-card">
+      <div class="fish-preview">
+        <img [src]="getFishImage(selectedFish?.name)"  alt="fish" class="fish-img"/>
+        <div class="fish-name">{{ selectedFish?.name || 'Select a Fish' }}</div>
       </div>
-      <div class="form-row">
-        <label>Weight <small>(lbs)</small></label>
+      <hr class="divider-top" />
+      <form [formGroup]="catchForm" (ngSubmit)="onSubmit()" class="form-group">
+        <div class="form-row">
+          <label>Length <small>(inches)</small></label>
+          <input
+            type="number"
+            min="1"
+            formControlName="length"
+          />
+        </div>
+        <div class="form-row">
+          <label>Weight <small>(lbs)</small></label>
+          <input
+            type="number"
+            min="1"
+            formControlName="weight"
+          />
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            catchForm.get('length')?.touched &&
+            catchForm.get('length')?.hasError('min')
+          "
+        >
+          Length must be at least 1.
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            catchForm.get('weight')?.touched &&
+            catchForm.get('weight')?.hasError('min')
+          "
+        >
+          Weight must be at least 1.
+        </div>
+        <label>Date Caught</label>
         <input
-          type="number"
-          formControlName="weight"
+          type="datetime-local"
+          formControlName="dateCaught"
         />
-      </div>
-      <label>Date Caught</label>
-      <input
-        type="datetime-local"
-        formControlName="dateCaught"
-      />
-      <label>Fish Species</label>
-      <select formControlName="fish">
-        <option *ngIf="fishList.length === 0" disabled>
-          Loading fish...
-        </option>
-        <option *ngFor="let fish of fishList" [ngValue]="fish">
-          {{ fish.name }}
-        </option>
-      </select>
-      <label>Trip</label>
-      <select formControlName="trip">
-        <option *ngIf="tripList.length === 0" disabled>
-          Loading trips...
-        </option>
-        <option *ngFor="let trip of tripList" [ngValue]="trip">
-          {{ trip.location }}  |  {{ trip.tripDate }}
-        </option>
-      </select>
-      <div class="helper-text">No trips yet? Create one first!</div>
-      <hr class="divider" />
-      <button type="submit" class="save-btn">Save Catch</button>
-    </form>
+        <label>Fish Species</label>
+        <select formControlName="fish">
+          <option [ngValue]="null" disabled selected>
+            Select a fish species
+          </option>
+          <option *ngFor="let fish of fishList" [ngValue]="fish">
+            {{ fish.name }}
+          </option>
+        </select>
+        <label>Trip</label>
+        <select formControlName="trip" [compareWith]="compareTrips">
+          <option *ngIf="tripList.length === 0" disabled>
+            Loading trips...
+          </option>
+          <option *ngFor="let trip of tripList" [ngValue]="trip">
+            {{ trip.location }}  |  {{ trip.tripDate }}
+          </option>
+        </select>
+        <div class="helper-text">No trips yet? Create one first!</div>
+        <hr class="divider" />
+        <button type="submit" class="save-btn" [disabled]="catchForm.invalid">Save Catch</button>
+      </form>
+    </div>
   </div>
 </div>

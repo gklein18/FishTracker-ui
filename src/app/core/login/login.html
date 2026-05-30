@@ -1,7 +1,7 @@
 <div class ="login-back">
   <div class="login-card">
     <div class="logo">
-      <h1><img src="fish_icon.png" alt="Test" class="small-icon">FishTracker</h1>
+      <h1><img src="/assets/fish_icon.png" alt="Test" class="small-icon">FishTracker</h1>
       <span>Welcome back!</span>
     </div>
     <form>
@@ -16,7 +16,10 @@
       <button type="submit" class="login-btn" (click)="navToDashboard()">Login</button>
     </form>
     <div class="signup">
-      Don’t have an account? <a href="#">Sign Up</a>
+      Don’t have an account? <a routerLink="/signup">Sign Up</a>
+    </div>
+    <div class="demo-note">
+      Demo Mode: Click Login to explore the app.
     </div>
   </div>
 </div>

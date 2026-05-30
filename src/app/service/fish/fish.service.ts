@@ -12,4 +12,8 @@ export class FishService {
   getAllFish(): Observable<Fish[]> {
     return this.http.get<Fish[]>('/api/fish/all');
   }
+
+  getFishImage(species: string): string {
+    return '/assets/fish/' + species.toLowerCase() + '.png';
+  }
 }

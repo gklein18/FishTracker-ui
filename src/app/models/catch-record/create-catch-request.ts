@@ -1,5 +1,8 @@
 export interface CreateCatchRequest {
-  fishId: number;
   length: number;
   weight: number;
+  dateCaught: string;
+  fishId: number;
+  tripId: number;
+  userId: number;
 }

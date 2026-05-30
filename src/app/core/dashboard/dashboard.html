@@ -15,11 +15,11 @@
     </div>
     <div class="card two">
       <h2>Recent Trips</h2>
-      <app-recent-trips></app-recent-trips>
+      <app-recent-trips (updateTrip)="openDurationModal($event)"></app-recent-trips>
     </div>
     <div class="card three">
       <h2>Recent Catches</h2>
-      <app-recent-catches></app-recent-catches>
+      <app-recent-catches (addCatch)="openCatchModal()"></app-recent-catches>
     </div>
 
   </div>
@@ -46,4 +46,13 @@
       <app-personal-bests></app-personal-bests>
     </div>
   </div>
+  <app-catch-form
+    *ngIf="isCatchModalOpen"
+    (close)="closeCatchModal()">
+  </app-catch-form>
+  <app-duration-form
+    *ngIf="isDurationModalOpen"
+    [selectedTrip]="selectedTripForEdit"
+    (close)="closeDurationModal()">
+  </app-duration-form>
 </div>

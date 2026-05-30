@@ -6,10 +6,10 @@
 }
 
 .dashboard {
-  min-width: 100vh;
+  min-width: 100vw;
   margin: auto;
   padding: 20px;
-  background: url("background.png") center/cover no-repeat;
+  background: url("/assets/background.png") center/cover no-repeat;
   min-height: 100vh;
   justify-content: center;
 }
@@ -108,8 +108,7 @@ button:hover {
 .trip-image {
   position: relative;
   height: 160px;
-  background: url('sunrise.jpg') center/cover no-repeat;
-
+  background: url('/assets/sunrise.jpg') center/cover no-repeat;
   display: flex;
   align-items: flex-start;
   padding: 16px;
@@ -176,4 +175,35 @@ button:hover {
   cursor: pointer;
   font-weight: 500;
   color: black;
+}
+
+@media (max-width: 768px) {
+
+  .container {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .one,
+  .two,
+  .three,
+  .shift,
+  .pb {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .stats {
+    flex-direction: column;
+    margin-left: 0;
+    gap: 12px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .dashboard {
+    padding: 10px;
+  }
 }

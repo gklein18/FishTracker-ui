@@ -1,1 +1,19 @@
-<p>fish-list works!</p>
+<div class="fish-page">
+  <app-navigation-bar></app-navigation-bar>
+  <h2 class="page-title">Fish Species</h2>
+
+    <div *ngIf="fishList$ | async as fishes">
+      <div *ngIf="fishes.length > 0" class="fish-grid">
+        <div class="fish-card" *ngFor="let fish of fishes">
+          <img
+            class="fish-img"
+            [src]="getFishImage(fish.name)"
+            [alt]="fish.name"
+          />
+          <div class="fish-name">
+            {{ fish.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Location, NgIf } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navigation-bar',
-  imports: [NgIf],
+  imports: [RouterLink],
   templateUrl: './navigation-bar.html',
   styleUrl: './navigation-bar.css',
+  standalone: true,
 })
 export class NavigationBar {
   path: string = '';

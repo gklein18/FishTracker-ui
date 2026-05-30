@@ -13,13 +13,18 @@
         *ngIf="isTripModalOpen"
         (close)="closeTripModal()">
       </app-trip-form>
+      <app-catch-form
+        *ngIf="isCatchModalOpen"
+        [selectedTrip]="selectedTrip"
+        (close)="closeCatchModal()">
+      </app-catch-form>
     </div>
     <div class="layout" [class.detail-open]="selectedTrip">
       <div class="trips-left">
         <div *ngIf="trips$ | async as trips; else loading">
           <div class="trip-list">
             <div *ngIf="trips.length === 0" class="empty-state">
-              <p>No trips yet 🎣</p>
+              <p>No trips yet</p>
               <button>Create your first trip</button>
             </div>
 
@@ -28,13 +33,25 @@
               *ngFor="let trip of trips"
               (click)="selectTrip(trip)"
             >
-              <div class="trip-header">
-                <span class="location">📍 {{ trip.location }}</span>
-                <span class="date">{{ trip.tripDate }}</span>
+              <div class="fish-bg">
+                <img
+                  *ngFor="let fish of getFishIcons(trip.catchCount)"
+                  src="/assets/fish_counter.png"
+                  class="fish-icon"
+                />
               </div>
-
+              <div class="trip-header">
+                <span class="location">{{ trip.location }}</span>
+                <div class="trip-actions">
+                  <span class="date">{{ trip.tripDate }}</span>
+                  <button class="delete-btn"
+                          (click)="deleteTrip(trip.id); $event.stopPropagation()">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </div>
               <div class="trip-body">
-                🎣 {{ trip.catchCount || 0 }} catches
+                {{ trip.catchCount || 0 }} catches
               </div>
             </div>
           </div>
@@ -53,7 +70,7 @@
             <p>{{ selectedTrip.tripDate }}</p>
           </div>
 
-          <button [routerLink]="['/catch/new']" class="add-btn">
+          <button (click)="openCatchModal()" class="add-btn">
             + Add Catch
           </button>
         </div>
@@ -69,7 +86,7 @@
 
             <div class="catch-card" *ngFor="let catch of catches">
               <img
-                src="bass.png"
+                [src]="getFishImage(catch.fishName)"
                 class="fish-img"
               />
               <div class="catch-info">
@@ -81,9 +98,14 @@
                   <span *ngIf="catch.weight"> • {{ catch.weight }} lbs</span>
                 </div>
               </div>
+              <button class="delete-btn"
+                      (click)="deleteCatch(catch.id, catch.tripId)">
+                <i class="fa-solid fa-trash"></i>
+              </button>
             </div>
           </div>
         </div>
+        <div class="divider"></div>
         <button (click)="selectedTrip = null">← Back</button>
       </div>
     </div>

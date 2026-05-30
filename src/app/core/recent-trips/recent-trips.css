@@ -5,6 +5,7 @@
   margin-top: 16px;
 }
 .trip-item {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,6 +25,15 @@
   transform: translateX(4px);
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.trip-item:hover .update-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.trip-item:hover .trip-right {
+  transform: translateX(-60px);
 }
 
 .trip-left {
@@ -47,6 +57,7 @@
   gap: 8px;
   color: #4b5563;
   font-size: 14px;
+  transition: transform 0.2s ease;
 }
 
 .divider {
@@ -65,4 +76,23 @@
 
   cursor: pointer;
   font-weight: 500;
+}
+
+.update-btn {
+  position: absolute;
+
+  right: 12px;
+  bottom: 12px;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .update-btn {
+    opacity: 1;
+  }
 }

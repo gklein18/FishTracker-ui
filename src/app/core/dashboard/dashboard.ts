@@ -10,18 +10,35 @@ import { PersonalBests } from '../personal-bests/personal-bests';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { TripRefreshService } from '../../service/shared/trip-refresh.service';
 import { Subject, takeUntil } from 'rxjs';
+import { CatchRefreshService } from '../../service/shared/catch-refresh.service';
+import { CatchForm } from '../catch-form/catch-form';
+import { DurationForm } from '../duration-form/duration-form';
+import { TripSummary } from '../../models/trip/trip-summary';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RecentCatches, RecentTrips, TripForm, NgIf, PersonalBests, NavigationBar],
+  imports: [
+    RecentCatches,
+    RecentTrips,
+    TripForm,
+    NgIf,
+    PersonalBests,
+    NavigationBar,
+    CatchForm,
+    DurationForm,
+  ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
+  standalone: true,
 })
 export class Dashboard implements OnInit {
   totalTrips = 0;
   totalCatches = 0;
   personalBests = 0;
   isTripModalOpen = false;
+  isCatchModalOpen = false;
+  isDurationModalOpen = false;
+  selectedTripForEdit: TripSummary | null = null;
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -29,6 +46,7 @@ export class Dashboard implements OnInit {
     private catchService: CatchRecordService,
     private fishService: FishService,
     private tripRefreshService: TripRefreshService,
+    private catchRefreshService: CatchRefreshService,
   ) {}
 
   ngOnInit(): void {
@@ -37,17 +55,18 @@ export class Dashboard implements OnInit {
     this.tripRefreshService.refresh$
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => this.loadStats());
+
+    this.catchRefreshService.refresh$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => this.loadStats());
   }
 
   loadStats() {
-    this.tripService.getUserTrips(1).subscribe((trips) => {
-      this.totalTrips = trips.length;
-    });
-
-    this.catchService.getUserCatches(1).subscribe((catches) => {
-      this.totalCatches = catches.length;
-      this.personalBests = catches.filter((c) => c.personalBest).length;
-    });
+    this.tripService.getUserStats(1).subscribe((stats) => {
+      this.totalTrips = stats[0];
+      this.totalCatches = stats[1];
+      this.personalBests = stats[2];
+    })
   }
 
   openTripModal() {
@@ -56,6 +75,23 @@ export class Dashboard implements OnInit {
 
   closeTripModal() {
     this.isTripModalOpen = false;
+  }
+
+  openCatchModal() {
+    this.isCatchModalOpen = true;
+  }
+
+  closeCatchModal() {
+    this.isCatchModalOpen = false;
+  }
+
+  openDurationModal(trip: TripSummary) {
+    this.selectedTripForEdit = trip;
+    this.isDurationModalOpen = true;
+  }
+
+  closeDurationModal() {
+    this.isDurationModalOpen = false;
   }
 
   ngOnDestroy() {

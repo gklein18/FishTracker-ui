@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { TripSummary } from '../../models/trip/trip-summary';
 import { TripService } from '../../service/trip/trip.service';
@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
   imports: [NgForOf, NgIf, AsyncPipe, DatePipe],
   templateUrl: './recent-trips.html',
   styleUrl: './recent-trips.css',
+  standalone: true,
 })
 export class RecentTrips implements OnInit {
   trips$!: Observable<TripSummary[]>;
   destroy$ = new Subject<void>();
+  @Output() updateTrip = new EventEmitter<TripSummary>();
 
   constructor(
     private tripService: TripService,
@@ -37,5 +39,13 @@ export class RecentTrips implements OnInit {
 
   viewAllTrips() {
     this.router.navigate(['/trips']);
+  }
+
+  viewTrip(trip: TripSummary) {
+    this.router.navigate(['/trips'], {
+      queryParams: {
+        selectedTrip: trip.id,
+      },
+    });
   }
 }

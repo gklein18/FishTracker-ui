@@ -11,7 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("lake.jpg") center/cover no-repeat;
+  background: url("/assets/lake.jpg") center/cover no-repeat;
 }
 
 .login-card {
@@ -113,4 +113,15 @@
     width: 90%;
     padding: 30px 20px;
   }
+}
+
+.demo-note {
+  margin-top: 14px;
+
+  font-size: 0.9rem;
+
+  color: rgba(255, 0, 0, 0.75);
+
+  text-align: center;
+  font-weight: bold;
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CreateUserRequest } from '../../models/user/create-user-request';
-import { User } from '../../core/user/user';
+import { User } from '../../models/user/user';
 
 @Injectable({
   providedIn: 'root',
@@ -33,4 +33,8 @@ export class UserService {
   deleteUser(id: number): Observable<void> {
     return this.http.delete<void>(`/api/user/delete/${id}`);
   }
+
+  // login(email: string, password: string): Observable<User> {
+  //   return this.http.post<User>()
+  // }
 }

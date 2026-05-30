@@ -39,4 +39,8 @@ export class TripService {
   deleteTrip(id: number): Observable<void> {
     return this.http.delete<void>(`/api/trips/delete/${id}`);
   }
+
+  getUserStats(id: number): Observable<number[]> {
+    return this.http.get<number[]>(`/api/trips/user/stats/${id}`);
+  }
 }

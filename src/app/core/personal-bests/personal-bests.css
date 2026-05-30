@@ -1,7 +1,7 @@
 .fish-img {
   width: 250px;
   height: 90px;
-  object-fit: fill;
+  object-fit: contain;
 }
 
 .pb-list {
@@ -24,6 +24,10 @@
 
   transition: all 0.2s ease;
   cursor: pointer;
+
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .pb-item:hover {
@@ -35,7 +39,7 @@
 .pb-info {
   display: flex;
   flex-direction: column;
-  padding-left: 10%;
+  padding-left: 12px;
 }
 
 .species {
@@ -53,4 +57,39 @@
 
 .divider {
   opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+
+  .pb-list {
+    flex-direction: column;
+  }
+
+  .pb-item {
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    min-width: 0;
+  }
+
+  .fish-img {
+    width: 120px;
+    height: auto;
+    flex-shrink: 0;
+    max-width: 100%;
+  }
+
+  .species {
+    font-size: 18px;
+  }
+
+  .details {
+    font-size: 14px;
+  }
+
+  pb-info {
+    flex: 1;
+    min-width: 0;
+    padding-left: 0;
+  }
 }

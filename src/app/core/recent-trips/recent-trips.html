@@ -1,6 +1,6 @@
 <div *ngIf="trips$ | async as trips">
   <div *ngIf="trips.length > 0; else noData" class="trip-list">
-    <div *ngFor="let trip of trips" class="trip-item">
+    <div *ngFor="let trip of trips" class="trip-item" (click)="viewTrip(trip)">
       <div class="trip-left">
         <span class="arrow">▶</span>
         <span class="location">{{ trip.location }}</span>
@@ -10,6 +10,10 @@
         <span class="divider">|</span>
         <span>{{ trip.durationHours }} Hours</span>
       </div>
+      <button class="update-btn"
+              (click)="updateTrip.emit(trip); $event.stopPropagation()">
+        Update
+      </button>
     </div>
   </div>
 </div>

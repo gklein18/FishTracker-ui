@@ -3,7 +3,7 @@
     <div *ngFor="let fish of pbs" class="pb-item">
       <img
         class="fish-img"
-        src="bass.png"
+        [src]="getFishImage(fish.fishName)"
         alt="fish"
       />
       <div class="pb-info">

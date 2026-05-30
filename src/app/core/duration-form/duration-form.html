@@ -1,0 +1,21 @@
+<div class="modal-backdrop" (click)="onClose()">
+
+  <div class="modal" (click)="$event.stopPropagation()">
+
+    <h2>Update Trip Duration</h2>
+    <p class="subtitle">Enter total trip duration</p>
+
+    <form [formGroup]="durationForm" (ngSubmit)="onSubmit()">
+
+      <input type="text" formControlName="tripDuration" />
+      Hours
+      <div class="actions">
+        <button type="button" class="cancel" (click)="onClose()">Cancel</button>
+        <button type="submit" class="save">Save Trip</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

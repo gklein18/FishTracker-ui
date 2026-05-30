@@ -2,18 +2,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TripService } from '../../service/trip/trip.service';
 import { TripRefreshService } from '../../service/shared/trip-refresh.service';
-
-interface CreateTripRequest {
-  location: string;
-  tripDate: string;
-  userId: number;
-}
+import { CreateTripRequest } from '../../models/trip/create-trip-request';
 
 @Component({
   selector: 'app-trip-form',
   imports: [ReactiveFormsModule],
   templateUrl: './trip-form.html',
   styleUrl: './trip-form.css',
+  standalone: true,
 })
 export class TripForm implements OnInit {
   @Output() close = new EventEmitter<void>();

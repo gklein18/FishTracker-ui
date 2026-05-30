@@ -96,7 +96,7 @@ nav .nav-bar .logo a{
 }
 
 .menu {
-  margin-left: auto;
+  margin-left: 31.5%;
 }
 
 @media (max-width: 768px) {
@@ -130,5 +130,9 @@ nav .nav-bar .logo a{
     padding: 8px 12px;
     font-size: 14px;
     display: none;
+  }
+
+  .menu {
+    margin-left: auto;
   }
 }

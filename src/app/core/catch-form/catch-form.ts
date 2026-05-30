@@ -50,7 +50,7 @@ export class CatchForm implements OnInit {
 
   initForm() {
     this.catchForm = this.fb.group({
-      length: [null, [Validators.required, Validators.min(1), Validators.max(10)]],
+      length: [null, [Validators.required, Validators.min(1), Validators.max(120)]],
       weight: [null, [Validators.min(1), Validators.max(200)]],
       dateCaught: ['', [Validators.required]],
       fish: [null, [Validators.required]],

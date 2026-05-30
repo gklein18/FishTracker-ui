@@ -10,7 +10,7 @@
         <span class="divider">|</span>
         <span>{{ trip.durationHours }} Hours</span>
       </div>
-      <button class="update-btn"
+      <button *ngIf="trip.durationHours == 0" class="update-btn"
               (click)="updateTrip.emit(trip); $event.stopPropagation()">
         Update
       </button>

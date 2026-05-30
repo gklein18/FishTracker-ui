@@ -39,6 +39,18 @@ Testing
 - Responsive mobile layout
 
 ## Screenshots
+Dashboard view:
+<img width="1920" height="948" alt="image" src="https://github.com/user-attachments/assets/14f5ee7d-145f-4e96-819b-db39e1861dd1" />
+
+Trips page with trip selected:
+<img width="1900" height="951" alt="image" src="https://github.com/user-attachments/assets/1d543cb6-5835-4fdf-a4f6-7891f82d52ce" />
+
+Catch entry modal:
+<img width="1904" height="945" alt="image" src="https://github.com/user-attachments/assets/880ac60d-ba7f-443e-a2fd-96db4acfdaf6" />
+
+Mobile view (dev tools version):
+
+<img width="448" height="884" alt="image" src="https://github.com/user-attachments/assets/fea94723-acd7-4242-8881-417ca1fba750" />
 
 ## Prerequisites
 These are the current versions the application is running on. Check version compatibilities if using more recent versions

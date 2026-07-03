@@ -1,0 +1,83 @@
+<div class="stats-container">
+  <div class="stats-header">
+    <h1>Fishing Statistics</h1>
+    <p class="subtitle">View your comprehensive fishing stats and achievements</p>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-spinner">
+    <div class="spinner"></div>
+    <p>Loading your statistics...</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="error && !loading" class="error-message">
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Stats Content -->
+  <div *ngIf="userStats && !loading && !error" class="stats-content">
+    
+    <!-- Key Metrics Cards -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Total Catches</div>
+        <div class="metric-value">{{ userStats.totalCatches }}</div>
+        <div class="metric-icon">🎣</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Total Trips</div>
+        <div class="metric-value">{{ userStats.totalTrips }}</div>
+        <div class="metric-icon">⛵</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Avg Catches/Trip</div>
+        <div class="metric-value">{{ formatNumber(userStats.averageCatchesPerTrip) }}</div>
+        <div class="metric-icon">📊</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Heaviest Fish</div>
+        <div class="metric-value">{{ formatNumber(userStats.heaviestFishWeight) }} lbs</div>
+        <div class="metric-icon">⚖️</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Longest Fish</div>
+        <div class="metric-value">{{ formatNumber(userStats.longestFishLength) }} in</div>
+        <div class="metric-icon">📏</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Best Trip</div>
+        <div class="metric-value">{{ userStats.maxCatchesInTrip || 'N/A' }}</div>
+        <div class="metric-subtitle" *ngIf="userStats.tripWithMostCatches">
+          Trip #{{ userStats.tripWithMostCatches }}
+        </div>
+        <div class="metric-icon">🏆</div>
+      </div>
+    </div>
+
+    <!-- Species Breakdown Section -->
+    <div class="species-section">
+      <h2>Species Breakdown</h2>
+      <div class="species-list">
+        <div *ngIf="getTopSpecies().length > 0; else noSpecies" class="species-table">
+          <div class="species-header">
+            <div class="species-name-col">Species</div>
+            <div class="species-count-col">Caught</div>
+          </div>
+          <div *ngFor="let species of getTopSpecies()" class="species-row">
+            <div class="species-name-col">{{ species.speciesName }}</div>
+            <div class="species-count-col">{{ species.catchCount }}</div>
+          </div>
+        </div>
+        <ng-template #noSpecies>
+          <div class="no-data">No species data available</div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
